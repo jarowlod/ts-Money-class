@@ -11,9 +11,9 @@ export class Money {
     return Math.round(value * 100 * (1 + Number.EPSILON)) / 100;
   }
 
-  // round(): Money {
-  //   return new Money(Money.round(this.value));
-  // }
+  round(): Money {
+    return new Money(Money.round(this.value));
+  }
 
   static floor(value: number): number {
     return Math.floor(value * 100 * (1 + Number.EPSILON)) / 100;
@@ -49,10 +49,10 @@ export class Money {
 }
 
 console.log( 
-  // new Money(5.015).add(new Money(0.015)).valueOf(),
-  // Money.of(5.015).add(Money.of(0.015)).valueOf(),
-  // Money.of(5.015*100).toCurrency(),
-  // Money.of(3).percent(50).valueOf(),
+  new Money(5.015).add(new Money(0.015)).valueOf(),
+  Money.of(5.015).add(Money.of(0.015)).valueOf(),
+  Money.of(5.015*100).toCurrency(),
+  Money.of(3).percent(50).valueOf(),
   Money.floor(5.011),
   Money.of('12kk')
 );
