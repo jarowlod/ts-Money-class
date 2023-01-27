@@ -56,3 +56,41 @@ console.log(
   Money.floor(5.011),
   Money.of('12kk')
 );
+
+
+var num = ["zero", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć", "dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"];
+var tens = ["dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt", "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"];
+var hundreds = ["", "sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset", "osiemset", "dziewięćset"];
+
+var groups = [["", "", ""],
+            ["tysiąc", "tysiące", "tysięcy"],
+            ["milion", "miliony", "milionów"],
+            ["miliard", "miliardy", "miliardów"],
+            ["bilion", "biliony", "bilionów"],
+            ["biliard", "biliardy", "biliardów"],
+            ["trylion", "tryliony", "trylionów"]];
+
+function number2words(n){
+    if (n < 20) return num[n];
+    var digit = n%10;
+    if (n < 100) return tens[~~(n/10)-2] + (digit? " " + num[digit]: "");
+    if (n < 1000) return hundreds[~~(n/100)] + (n%100 == 0? "": " " + number2words(n%100));
+
+    let d = 1000;
+    if (n<1000000) d = 1;
+
+    const baza = ~~(n/1000);
+    const gr = baza%10;
+    console.log(gr, baza)
+    let grr = 0;
+    switch (gr) {
+      case 1: grr = baza<10 ? 0 : 2; break;
+      case 2:
+      case 3:
+      case 4: grr = 1; break;
+      default: grr = 2;
+    };
+    return number2words(~~(n/1000)) + " " + groups[d][grr] + (n%1000 != 0? " " + number2words(n%1000): "");
+}
+
+console.log(number2words(1116321))
