@@ -62,50 +62,12 @@ console.log(
   Money.of('12kk')
 );
 
-const num = [
-  'zero',
-  'jeden',
-  'dwa',
-  'trzy',
-  'cztery',
-  'pięć',
-  'sześć',
-  'siedem',
-  'osiem',
-  'dziewięć',
-  'dziesięć',
-  'jedenaście',
-  'dwanaście',
-  'trzynaście',
-  'czternaście',
-  'piętnaście',
-  'szesnaście',
-  'siedemnaście',
-  'osiemnaście',
-  'dziewiętnaście',
-];
-const tens = [
-  'dwadzieścia',
-  'trzydzieści',
-  'czterdzieści',
-  'pięćdziesiąt',
-  'sześćdziesiąt',
-  'siedemdziesiąt',
-  'osiemdziesiąt',
-  'dziewięćdziesiąt',
-];
-const hundreds = [
-  '',
-  'sto',
-  'dwieście',
-  'trzysta',
-  'czterysta',
-  'pięćset',
-  'sześćset',
-  'siedemset',
-  'osiemset',
-  'dziewięćset',
-];
+
+
+const num = ['zero', 'jeden', 'dwa', 'trzy', 'cztery', 'pięć', 'sześć', 'siedem', 'osiem', 'dziewięć', 'dziesięć',
+  'jedenaście', 'dwanaście', 'trzynaście', 'czternaście', 'piętnaście', 'szesnaście', 'siedemnaście', 'osiemnaście', 'dziewiętnaście'];
+const tens = ['dwadzieścia', 'trzydzieści', 'czterdzieści', 'pięćdziesiąt', 'sześćdziesiąt', 'siedemdziesiąt', 'osiemdziesiąt', 'dziewięćdziesiąt'];
+const hundreds = ['', 'sto', 'dwieście', 'trzysta', 'czterysta', 'pięćset', 'sześćset', 'siedemset', 'osiemset', 'dziewięćset'];
 
 const groups = [
   ['', '', ''],
