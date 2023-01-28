@@ -81,26 +81,26 @@ const groups = [
 
 const currencyVariation = [' złoty', ' złote', ' złotych'];
 
-let sufix = '';
+
 function inWord(n) {
-  sufix = '';
   const reszta = ((n - Math.trunc(n)) * 100).toFixed();
-  return number2words(Math.trunc(n)) + ` ${reszta}/100`;
+  const sufix =  currencyVariation[n<10 ? getGroup(n%10) : 2];
+
+  return number2words(Math.trunc(n)) + ` ${sufix} ${reszta}/100`;
 }
 
-function number2words(n, isSufix = true) {
-  if (n < 1000) sufix = sufix == '' && isSufix ? currencyVariation[getGroup(n)] : sufix;
-  if (n < 20) return num[n] + sufix;
+function number2words(n) {
+  if (n < 20) return num[n];
   var digit = n % 10;
-  if (n < 100) return tens[Math.trunc(n / 10) - 2] + (digit ? ' ' + num[digit] + sufix : sufix);
-  if (n < 1000) return hundreds[Math.trunc(n / 100)] + (n % 100 == 0 ? sufix : ' ' + number2words(n % 100, isSufix));
+  if (n < 100) return tens[Math.trunc(n / 10) - 2] + (digit ? ' ' + num[digit] : '');
+  if (n < 1000) return hundreds[Math.trunc(n / 100)] + (n % 100 == 0 ? '' : ' ' + number2words(n % 100));
 
   const pow = getPow(n);
   const dzielnik = 1000 ** pow;
   const baza = Math.trunc(n / dzielnik);
   const group = getGroup(baza);
 
-  return number2words(baza, false) + ' ' + groups[pow][group] + (n % dzielnik != 0 ? ' ' + number2words(n % dzielnik, true) : currencyVariation[2]);
+  return number2words(baza) + ' ' + groups[pow][group] + (n % dzielnik != 0 ? ' ' + number2words(n % dzielnik) : '');
 }
 
 function getPow(n) {
@@ -112,7 +112,7 @@ function getPow(n) {
 }
 
 function getGroup(baza) {
-  switch (baza % 10) {
+  switch (baza) {
     case 1: return baza < 10 ? 0 : 2;
     case 2:
     case 3:
