@@ -84,7 +84,7 @@ const currencyVariation = [' złoty', ' złote', ' złotych'];
 
 function inWord(n) {
   const reszta = ((n - Math.trunc(n)) * 100).toFixed();
-  const sufix =  currencyVariation[n<10 ? getGroup(n%10) : 2];
+  const sufix =  currencyVariation[getGroup(n%100)];
 
   return number2words(Math.trunc(n)) + ` ${sufix} ${reszta}/100`;
 }
@@ -112,7 +112,8 @@ function getPow(n) {
 }
 
 function getGroup(baza) {
-  switch (baza) {
+  if (baza >= 5 && baza <= 14) return 2;
+  switch (baza%10) {
     case 1: return baza < 10 ? 0 : 2;
     case 2:
     case 3:
